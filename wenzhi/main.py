@@ -48,8 +48,8 @@ if __name__ == "__main__":
     }
     param = {
         'Region': 'sz',
-        'SecretId': 'AKID1CC0byI4nJbfW95jgPvEKAk36sOdjLo0',
-        'SecretKey': '6xXrvkNmxvfBTXN0PaXGl25vXv51jDUa',
+        'SecretId': 'your_secretId',
+        'SecretKey': 'your_secretKey',
         'Action': 'TextClassify',
         'action-param': action_param
     }
