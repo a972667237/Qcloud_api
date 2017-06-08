@@ -22,9 +22,8 @@ class Wenzhi:
     def _build_param(self):
         def __build_signature(params):
             srcStr = self.method + self.domain[8:] + '?' + "&".join(k.replace("_",".") + "=" + str(params[k]) for k in sorted(params.keys()))
-            print (srcStr)
-            hashed = hmac.new(self.param['SecretKey'].encode('utf-8'), srcStr.encode('utf-8'), hashlib.sha256)
-            return binascii.b2a_base64(hashed.digest())[:-1]
+            hashed = hmac.new(self.param['SecretKey'].encode('utf-8'), srcStr.encode('utf-8'), hashlib.sha1)
+            return binascii.b2a_base64(hashed.digest())[:-1].decode('utf-8')
         timestamp = int(time.time())
         nonce = random.randint(0, 999999)
         build_param = {
@@ -37,22 +36,21 @@ class Wenzhi:
         for param_key in self.param['action-param']:
             build_param[param_key] = self.param['action-param'][param_key]
         build_param["Signature"] = __build_signature(build_param)
-        print (build_param)
         return build_param
     def send(self):
-        req = requests.get(self.domain, data=self._build_param(), timeout=10, verify=False)
+        req = requests.post(self.domain, data=self._build_param(), timeout=10, verify=False)
         return req
 
 if __name__ == "__main__":
     action_param = {
-        'title': 'Dior新款，秋冬新款娃娃款甜美圆领配毛领毛呢大衣外套、码数：SM、P330',
-        'content': 'Dior新款，秋冬新款娃娃款甜美圆领配毛领毛呢大衣外套、码数：SM、P330'
+        'title': u'Dior新款，秋冬新款娃娃款甜美圆领配毛领毛呢大衣外套、码数：SM、P330',
+        'content': u'Dior新款，秋冬新款娃娃款甜美圆领配毛领毛呢大衣外套、码数：SM、P330',
     }
     param = {
-        'Region': 'gz',
+        'Region': 'sz',
         'SecretId': 'AKID1CC0byI4nJbfW95jgPvEKAk36sOdjLo0',
         'SecretKey': '6xXrvkNmxvfBTXN0PaXGl25vXv51jDUa',
-        'Action': 'TextKeywords',
+        'Action': 'TextClassify',
         'action-param': action_param
     }
     w = Wenzhi(param)
