@@ -1,6 +1,7 @@
 # 腾讯文智分析接口的。。。的。。。的api调用方法
 ---
 ###没抛出各种异常。。就，应该，不会有太多异常吧，不过以后有时间会补的
+
 ###怎么用呢？
 ```
   action_param = {
@@ -10,7 +11,7 @@
     }
     param = {
         'Region': 'sz',  #还有广州啊(gz)、上海(sh)啊、北京之类的
-        'SecretId': '你的那个。。', [云API密匙地址](https://console.qcloud.com/capi)
+        'SecretId': '你的那个。。', 
         'SecretKey': '你的这个。。',
         'Action': 'TextClassify', #看文档加
         'action-param': action_param
@@ -23,3 +24,5 @@
 * [同义词API](https://www.qcloud.com/document/api/271/2076)
 * [转码API](https://www.qcloud.com/document/api/271/2079)
 * ...其他的自己看吧
+
+* [云API密匙地址](https://console.qcloud.com/capi)
